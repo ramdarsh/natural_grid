@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natural Grid | Sustainable Energy Solutions</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@300;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Solar Gold and Eco Green color palette */
+            --brand-primary: #FFB300;
+            --brand-secondary: #2E7D32;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Anek Malayalam', sans-serif;
+            font-stretch: condensed;
+        }
+
+        body {
+            background-color: #051005;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 1. Static Dark Solar Background Image */
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1509391366360-1e97d5259d52?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.20;
+            z-index: -3;
+        }
+
+        /* 2. Animated Moving Grid */
+        .bg-animated-grid {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background-image:
+                linear-gradient(to right, rgba(255, 179, 0, 0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(46, 125, 50, 0.08) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: moveGrid 20s linear infinite;
+            z-index: -2;
+            transform: rotate(-15deg);
+        }
+
+        /* 3. Glowing Ambient Orbs */
+        .glow-orb {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(255, 179, 0, 0.12) 0%, rgba(46, 125, 50, 0.08) 50%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: pulseOrb 8s ease-in-out infinite alternate;
+        }
+
+        /* Main Content Container */
+        .container {
+            padding: 4rem 2rem 3rem;
+            border: 1px solid rgba(255, 179, 0, 0.2);
+            background: rgba(10, 15, 10, 0.70);
+            border-radius: 12px;
+            max-width: 800px;
+            width: 90%;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(46, 125, 50, 0.1) inset;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        /* Top and Bottom Brand Stripes */
+        .stripes {
+            height: 6px;
+            background: linear-gradient(90deg, var(--brand-secondary) 0%, var(--brand-primary) 50%, var(--brand-secondary) 100%);
+            background-size: 200% 100%;
+            width: 100%;
+            position: absolute;
+            left: 0;
+            animation: gradientShift 6s linear infinite;
+        }
+
+        .stripes.top {
+            top: 0;
+        }
+
+        .stripes.bottom {
+            bottom: 0;
+        }
+
+        /* Image Logo Container */
+        .logo-container {
+            background-color: #ffffff;
+            /* White background to frame the logo */
+            padding: 15px 25px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            /* Gentle floating animation for the logo */
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .brand-logo {
+            max-width: 240px;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        p.subtitle {
+            font-size: 1.2rem;
+            color: #cccccc;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+
+        /* Animated Contact Button */
+        .contact-btn {
+            display: inline-block;
+            background-color: var(--brand-primary);
+            color: #000000;
+            padding: 14px 35px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+            margin-bottom: 3rem;
+            border: 2px solid var(--brand-primary);
+            box-shadow: 0 0 15px rgba(255, 179, 0, 0.4);
+            animation: buttonGlow 3s infinite alternate;
+        }
+
+        .contact-btn:hover {
+            background-color: transparent;
+            color: var(--brand-primary);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 179, 0, 0.6);
+        }
+
+        footer {
+            font-size: 1rem;
+            color: #888888;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 1.5rem;
+            font-weight: 300;
+        }
+
+        footer span {
+            color: var(--brand-secondary);
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        /* --- KEYFRAME ANIMATIONS --- */
+
+        @keyframes moveGrid {
+            0% {
+                transform: rotate(-15deg) translateY(0);
+            }
+
+            100% {
+                transform: rotate(-15deg) translateY(60px);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        @keyframes pulseOrb {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1.5);
+                opacity: 1;
+            }
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 200% 50%;
+            }
+        }
+
+        @keyframes buttonGlow {
+            0% {
+                box-shadow: 0 0 10px rgba(255, 179, 0, 0.3);
+            }
+
+            100% {
+                box-shadow: 0 0 25px rgba(255, 179, 0, 0.7);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .brand-logo {
+                max-width: 180px;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            p.subtitle {
+                font-size: 1.1rem;
+            }
+
+            .contact-btn {
+                padding: 12px 25px;
+                font-size: 1.1rem;
+            }
+
+            .container {
+                padding: 3rem 1.5rem 2rem;
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-image"></div>
+    <div class="bg-animated-grid"></div>
+    <div class="glow-orb"></div>
+
+    <div class="container">
+        <div class="stripes top"></div>
+
+        <div class="logo-container">
+            <img src="naturalgrid_logo.jpeg" alt="Natural Grid Logo" class="brand-logo">
+        </div>
+
+        <h1>Under Construction</h1>
+
+        <p class="subtitle">We are currently laying the groundwork for our new website. Natural Grid will be launching
+            soon to power your future with clean, reliable energy.</p>
+
+        <a href="mailto:info@naturalgrid.in" class="contact-btn">✉ Contact Us</a>
+
+        <footer>
+            <p>Developed by <span>RMSLABS</span></p>
+        </footer>
+
+        <div class="stripes bottom"></div>
+    </div>
+
+</body>
+
+</html>
